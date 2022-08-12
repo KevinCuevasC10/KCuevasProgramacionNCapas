@@ -143,14 +143,14 @@ namespace PL_MVC.Controllers
                                 
                         if (result.Correct)
                         {
-                             ViewBag.Message = "Se ha agregado al usuario de forma exitosa¡¡";
+                             ViewBag.Mensaje = "Se ha agregado al usuario de forma exitosa¡¡";
                         }
                         else
                         {
-                            ViewBag.Message = "No se ha podido agregar al usuario " + result.Message;
+                            ViewBag.Mensaje = "No se ha podido agregar al usuario " + result.Message;
                 }
                 }
-                else
+                else // Entra al update
                 {
                     result = BL.Usuario.UpdateEF(usuario);                    
                    
@@ -170,20 +170,22 @@ namespace PL_MVC.Controllers
         public ActionResult Delete(int IdUsuario)
         {
             
-            ML.Usuario usuario = new ML.Usuario(); //Acceder a las propiedades
-           usuario.IdUsuario =  IdUsuario;// MAndar el id 
-
+           ML.Usuario usuario = new ML.Usuario(); //Acceder a las propiedades
+           usuario.IdUsuario =  IdUsuario;// Mandar el id 
+   
+  
            ML.Result result = BL.Usuario.DeleteEF(usuario);// Mandar todo el parametro con el usuario   
 
             if (result.Correct)
             {
-                usuario.Usuarios = result.Objects;
+                //usuario.Usuarios = result.Objects;
+                ViewBag.Mensaje = "Se ha borrado al usuario seleccionado";
             }
             else
             {
-                Console.WriteLine("No se ha borrado el usuario" + result.Message);
+                ViewBag.Mensaje = "No se ha borrado el usuario" + result.Message;
             }
-            return View(usuario);
+            return View("Modal");
 
         }
 

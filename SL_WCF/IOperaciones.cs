@@ -14,11 +14,16 @@ namespace SL_WCF
         [OperationContract]
         int Suma(int a, int b);//Firma de metodos
         [OperationContract]
-        string Saludar(string Nombre);
-            
-        
+         int Resta(int Numero1, int Numero2);
+        [OperationContract]
+         int Division(int Numero1, int Numero2);
+        [OperationContract]
+         int Multiplicacion(int Numero1, int Numero2);
 
-    
-        
+        [OperationContract]
+        string Saludar(string Nombre);
+
+
+
     }
 }

@@ -17,6 +17,25 @@ namespace SL_WCF
                 int Resultado = a + b;
                 return Resultado;
             }
+            
+            public int Resta(int Numero1, int Numero2)
+            {
+                int Resultado = Numero1 - Numero2;
+                return Resultado;
+            }
+            
+            public int Division(int Numero1, int Numero2)
+            {
+                int Resultado = Numero1 / Numero2;
+                return Resultado;
+            }
+
+            public int Multiplicacion(int Numero1, int Numero2)
+            {
+                int Resultado = Numero1 * Numero2;
+                return Resultado;
+            }
+
             public string Saludar(string Nombre)
             {
                 return string.Format("Hola"+Nombre);

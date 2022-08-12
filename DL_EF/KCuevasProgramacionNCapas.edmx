@@ -389,9 +389,6 @@
         </EntityType>
         <EntityContainer Name="KCuevasProgramacioNCapasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Rols" EntityType="Self.Rol" />
-          <FunctionImport Name="UsuarioDelete">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="Colonias" EntityType="KCuevasProgramacioNCapasModel.Colonia" />
           <EntitySet Name="Direccions" EntityType="KCuevasProgramacioNCapasModel.Direccion" />
           <EntitySet Name="Estadoes" EntityType="KCuevasProgramacioNCapasModel.Estado" />
@@ -481,28 +478,6 @@
             <Parameter Name="NumeroExterior" Mode="In" Type="String" />
             <Parameter Name="IdColonia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UsuarioUpdate">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
-            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="Password" Mode="In" Type="String" />
-            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
-            <Parameter Name="Sexo" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="String" />
-            <Parameter Name="Curp" Mode="In" Type="String" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="UserName" Mode="In" Type="String" />
-            <Parameter Name="Celular" Mode="In" Type="String" />
-            <Parameter Name="Imagen" Mode="In" Type="String" />
-            <Parameter Name="IdDireccion" Mode="In" Type="Int32" />
-            <Parameter Name="Calle" Mode="In" Type="String" />
-            <Parameter Name="NumeroInterior" Mode="In" Type="String" />
-            <Parameter Name="NumeroExterior" Mode="In" Type="String" />
-            <Parameter Name="IdColonia" Mode="In" Type="Int32" />
-            <Parameter Name="Status" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <EntitySet Name="Usuarios" EntityType="KCuevasProgramacioNCapasModel.Usuario" />
           <AssociationSet Name="FK__Direccion__IdUsu__32E0915F" Association="KCuevasProgramacioNCapasModel.FK__Direccion__IdUsu__32E0915F">
             <End Role="Usuario1" EntitySet="Usuarios" />
@@ -541,6 +516,31 @@
           <Parameter Name="IdEstado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UsuarioGetById" ReturnType="Collection(KCuevasProgramacioNCapasModel.UsuarioGetById_Result)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UsuarioUpdate">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Curp" Mode="In" Type="String" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Celular" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="String" />
+            <Parameter Name="IdDireccion" Mode="In" Type="Int32" />
+            <Parameter Name="Calle" Mode="In" Type="String" />
+            <Parameter Name="NumeroInterior" Mode="In" Type="String" />
+            <Parameter Name="NumeroExterior" Mode="In" Type="String" />
+            <Parameter Name="IdColonia" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UsuarioDelete">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -909,7 +909,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="UsuarioDelete" FunctionName="KCuevasProgramacioNCapasModel.Store.UsuarioDelete" />
           <EntitySetMapping Name="Colonias">
             <EntityTypeMapping TypeName="KCuevasProgramacioNCapasModel.Colonia">
               <MappingFragment StoreEntitySet="Colonia">
@@ -1095,7 +1094,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UsuarioAdd" FunctionName="KCuevasProgramacioNCapasModel.Store.UsuarioAdd" />
-          <FunctionImportMapping FunctionImportName="UsuarioUpdate" FunctionName="KCuevasProgramacioNCapasModel.Store.UsuarioUpdate" />
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="KCuevasProgramacioNCapasModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
@@ -1207,6 +1205,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UsuarioUpdate" FunctionName="KCuevasProgramacioNCapasModel.Store.UsuarioUpdate" />
+          <FunctionImportMapping FunctionImportName="UsuarioDelete" FunctionName="KCuevasProgramacioNCapasModel.Store.UsuarioDelete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

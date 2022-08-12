@@ -12,6 +12,14 @@ namespace SL_WCF
     public interface IUsuario
     {
         [OperationContract]
-        
+        Result AddEF(ML.Usuario usuario);
+        [OperationContract]
+        Result UpdateEF(ML.Usuario usuario);
+        [OperationContract]
+        Result DeleteEF(ML.Usuario usuario);
+
+        [OperationContract]
+        [ServiceKnownType(typeof(ML.Usuario))]
+        Result GetAllEF(ML.Usuario usuario);
     }
 }

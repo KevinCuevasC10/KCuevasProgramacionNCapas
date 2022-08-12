@@ -523,7 +523,7 @@ namespace BL
             {
                 using (DL_EF.KCuevasProgramacioNCapasEntities context = new DL_EF.KCuevasProgramacioNCapasEntities())
                 {
-                    var query = context.UsuarioUpdate(usuario.IdUsuario, usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento.ToString(), usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol,usuario.UserName, usuario.Celular,null,usuario.Direccion.IdDireccion,usuario.Direccion.Calle, usuario.Direccion.NumeroInterior, usuario.Direccion.NumeroExterior, usuario.Direccion.Colonia.IdColonia, usuario.Status);
+                    var query = context.UsuarioUpdate(usuario.IdUsuario, usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento, usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol,usuario.UserName, usuario.Celular,null,usuario.Direccion.IdDireccion,usuario.Direccion.Calle, usuario.Direccion.NumeroInterior, usuario.Direccion.NumeroExterior, usuario.Direccion.Colonia.IdColonia, usuario.Status);
 
                     if (query > 0)
                     {
@@ -666,7 +666,7 @@ namespace BL
                         usuario.ApellidoMaterno = objUsuario.ApellidoMaterno;
                         usuario.Email = objUsuario.Email;
                         usuario.Password = objUsuario.Password;
-                        usuario.FechaNacimiento = objUsuario.FechaNacimiento.ToString();
+                        usuario.FechaNacimiento = objUsuario.FechaNacimiento.Value.ToString("dd-MM-yyyy");
                         usuario.Sexo = objUsuario.Sexo;
                         usuario.Telefono = objUsuario.Telefono;
                         usuario.Curp = objUsuario.Curp;

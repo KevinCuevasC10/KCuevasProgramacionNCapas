@@ -39,15 +39,6 @@ namespace DL_EF
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Proveedor1> Proveedor1 { get; set; }
     
-        public virtual int UsuarioDelete(Nullable<int> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsuarioDelete", idUsuarioParameter);
-        }
-    
         public virtual ObjectResult<RolGetAll_Result> RolGetAll()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RolGetAll_Result>("RolGetAll");
@@ -255,6 +246,87 @@ namespace DL_EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsuarioAdd", nombreParameter, apellidoPaternoParameter, apellidoMaternoParameter, emailParameter, passwordParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, curpParameter, idRolParameter, userNameParameter, celularParameter, imagenParameter, calleParameter, numeroInteriorParameter, numeroExteriorParameter, idColoniaParameter);
         }
     
+        public virtual int ProveedorAdd(string telefono)
+        {
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorAdd", telefonoParameter);
+        }
+    
+        public virtual int ProveedorDelete(Nullable<int> idProveedor)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorDelete", idProveedorParameter);
+        }
+    
+        public virtual ObjectResult<ProveedorGetById_Result> ProveedorGetById(Nullable<int> idProveedor)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProveedorGetById_Result>("ProveedorGetById", idProveedorParameter);
+        }
+    
+        public virtual int ProveedorUpdate(string telefono, Nullable<int> idProveedor)
+        {
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorUpdate", telefonoParameter, idProveedorParameter);
+        }
+    
+        public virtual ObjectResult<PaisGetAll_Result> PaisGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaisGetAll_Result>("PaisGetAll");
+        }
+    
+        public virtual ObjectResult<ColoniaGetByIdMunicipio_Result> ColoniaGetByIdMunicipio(Nullable<int> idMunicipio)
+        {
+            var idMunicipioParameter = idMunicipio.HasValue ?
+                new ObjectParameter("IdMunicipio", idMunicipio) :
+                new ObjectParameter("IdMunicipio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ColoniaGetByIdMunicipio_Result>("ColoniaGetByIdMunicipio", idMunicipioParameter);
+        }
+    
+        public virtual ObjectResult<EstadoGetByIdPais_Result> EstadoGetByIdPais(Nullable<int> idPais)
+        {
+            var idPaisParameter = idPais.HasValue ?
+                new ObjectParameter("IdPais", idPais) :
+                new ObjectParameter("IdPais", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EstadoGetByIdPais_Result>("EstadoGetByIdPais", idPaisParameter);
+        }
+    
+        public virtual ObjectResult<MunicipioGetByEstado_Result> MunicipioGetByEstado(Nullable<int> idEstado)
+        {
+            var idEstadoParameter = idEstado.HasValue ?
+                new ObjectParameter("IdEstado", idEstado) :
+                new ObjectParameter("IdEstado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MunicipioGetByEstado_Result>("MunicipioGetByEstado", idEstadoParameter);
+        }
+    
+        public virtual ObjectResult<UsuarioGetById_Result> UsuarioGetById(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UsuarioGetById_Result>("UsuarioGetById", idUsuarioParameter);
+        }
+    
         public virtual int UsuarioUpdate(Nullable<int> idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, string email, string password, string fechaNacimiento, string sexo, string telefono, string curp, Nullable<int> idRol, string userName, string celular, string imagen, Nullable<int> idDireccion, string calle, string numeroInterior, string numeroExterior, Nullable<int> idColonia, Nullable<bool> status)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -340,85 +412,13 @@ namespace DL_EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsuarioUpdate", idUsuarioParameter, nombreParameter, apellidoPaternoParameter, apellidoMaternoParameter, emailParameter, passwordParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, curpParameter, idRolParameter, userNameParameter, celularParameter, imagenParameter, idDireccionParameter, calleParameter, numeroInteriorParameter, numeroExteriorParameter, idColoniaParameter, statusParameter);
         }
     
-        public virtual int ProveedorAdd(string telefono)
-        {
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorAdd", telefonoParameter);
-        }
-    
-        public virtual int ProveedorDelete(Nullable<int> idProveedor)
-        {
-            var idProveedorParameter = idProveedor.HasValue ?
-                new ObjectParameter("IdProveedor", idProveedor) :
-                new ObjectParameter("IdProveedor", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorDelete", idProveedorParameter);
-        }
-    
-        public virtual ObjectResult<ProveedorGetById_Result> ProveedorGetById(Nullable<int> idProveedor)
-        {
-            var idProveedorParameter = idProveedor.HasValue ?
-                new ObjectParameter("IdProveedor", idProveedor) :
-                new ObjectParameter("IdProveedor", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProveedorGetById_Result>("ProveedorGetById", idProveedorParameter);
-        }
-    
-        public virtual int ProveedorUpdate(string telefono, Nullable<int> idProveedor)
-        {
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(string));
-    
-            var idProveedorParameter = idProveedor.HasValue ?
-                new ObjectParameter("IdProveedor", idProveedor) :
-                new ObjectParameter("IdProveedor", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProveedorUpdate", telefonoParameter, idProveedorParameter);
-        }
-    
-        public virtual ObjectResult<PaisGetAll_Result> PaisGetAll()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaisGetAll_Result>("PaisGetAll");
-        }
-    
-        public virtual ObjectResult<ColoniaGetByIdMunicipio_Result> ColoniaGetByIdMunicipio(Nullable<int> idMunicipio)
-        {
-            var idMunicipioParameter = idMunicipio.HasValue ?
-                new ObjectParameter("IdMunicipio", idMunicipio) :
-                new ObjectParameter("IdMunicipio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ColoniaGetByIdMunicipio_Result>("ColoniaGetByIdMunicipio", idMunicipioParameter);
-        }
-    
-        public virtual ObjectResult<EstadoGetByIdPais_Result> EstadoGetByIdPais(Nullable<int> idPais)
-        {
-            var idPaisParameter = idPais.HasValue ?
-                new ObjectParameter("IdPais", idPais) :
-                new ObjectParameter("IdPais", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EstadoGetByIdPais_Result>("EstadoGetByIdPais", idPaisParameter);
-        }
-    
-        public virtual ObjectResult<MunicipioGetByEstado_Result> MunicipioGetByEstado(Nullable<int> idEstado)
-        {
-            var idEstadoParameter = idEstado.HasValue ?
-                new ObjectParameter("IdEstado", idEstado) :
-                new ObjectParameter("IdEstado", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MunicipioGetByEstado_Result>("MunicipioGetByEstado", idEstadoParameter);
-        }
-    
-        public virtual ObjectResult<UsuarioGetById_Result> UsuarioGetById(Nullable<int> idUsuario)
+        public virtual int UsuarioDelete(Nullable<int> idUsuario)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
                 new ObjectParameter("IdUsuario", idUsuario) :
                 new ObjectParameter("IdUsuario", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UsuarioGetById_Result>("UsuarioGetById", idUsuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsuarioDelete", idUsuarioParameter);
         }
     }
 }
