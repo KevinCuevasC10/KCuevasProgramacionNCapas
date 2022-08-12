@@ -4,10 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ea62b9c12814ece81c363895734f3e9" Name="Diagram1" ZoomLevel="80">
+      <Diagram DiagramId="1ea62b9c12814ece81c363895734f3e9" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Rol" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Usuario" Width="1.5" PointX="9.625" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Usuario__IDrol__36B12243" ManuallyRouted="false" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Colonia" Width="1.5" PointX="12.125" PointY="1.125" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Direccion" Width="1.5" PointX="14.375" PointY="1.75" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Estado" Width="1.5" PointX="7.625" PointY="1.25" />
@@ -15,16 +13,18 @@
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Pai" Width="1.5" PointX="5.375" PointY="1.375" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Colonia__IdMunic__5441852A" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Direccion__IdCol__52593CB8" />
-        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Direccion__IdUsu__534D60F1" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Estado__IdPais__5629CD9C" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Municipio__IdEst__571DF1D5" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Area" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Departamento" Width="1.5" PointX="3" PointY="5.5" />
         <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Producto" Width="1.5" PointX="5.25" PointY="5" />
-        <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Proveedor" Width="1.5" PointX="3" PointY="8.625" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Departame__IdAre__6477ECF3" />
         <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Producto__IdDepa__6383C8BA" />
-        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Producto__IdProv__628FA481" />
+        <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Usuario" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Direccion__IdUsu__32E0915F" />
+        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Usuario__IDrol__36B122431" />
+        <EntityTypeShape EntityType="KCuevasProgramacioNCapasModel.Proveedor1" Width="1.5" PointX="7.375" PointY="8.875" />
+        <AssociationConnector Association="KCuevasProgramacioNCapasModel.FK__Producto__IdProv__36B12243" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

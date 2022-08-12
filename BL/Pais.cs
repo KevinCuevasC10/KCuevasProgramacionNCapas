@@ -28,7 +28,7 @@ namespace BL
                             ML.Pais pais = new ML.Pais();
 
                             pais.IdPais = objPais.IdPais;
-                            pais.Nombre = objPais.NombrePais;
+                            pais.Nombre = objPais.Nombre;
 
                             result.Objects.Add(pais);
                         }

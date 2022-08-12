@@ -495,7 +495,7 @@ namespace BL
             {
                 using (DL_EF.KCuevasProgramacioNCapasEntities context = new DL_EF.KCuevasProgramacioNCapasEntities())
                 {
-                    var query = context.UsuarioAdd(usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento, usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol, usuario.UserName, usuario.Celular);
+                    var query = context.UsuarioAdd(usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento, usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol, usuario.UserName, usuario.Celular,null, usuario.Direccion.Calle, usuario.Direccion.NumeroInterior, usuario.Direccion.NumeroExterior, usuario.Direccion.Colonia.IdColonia);
 
                     if (query > 0)
                     {
@@ -523,7 +523,7 @@ namespace BL
             {
                 using (DL_EF.KCuevasProgramacioNCapasEntities context = new DL_EF.KCuevasProgramacioNCapasEntities())
                 {
-                    var query = context.UsuarioUpdate(usuario.IdUsuario, usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento.ToString(), usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol,usuario.UserName, usuario.Celular);
+                    var query = context.UsuarioUpdate(usuario.IdUsuario, usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Email, usuario.Password, usuario.FechaNacimiento.ToString(), usuario.Sexo, usuario.Telefono, usuario.Curp, usuario.Rol.IdRol,usuario.UserName, usuario.Celular,null,usuario.Direccion.IdDireccion,usuario.Direccion.Calle, usuario.Direccion.NumeroInterior, usuario.Direccion.NumeroExterior, usuario.Direccion.Colonia.IdColonia, usuario.Status);
 
                     if (query > 0)
                     {
@@ -570,7 +570,8 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result GetAllEF()
+        public static ML.Result GetAllEF(ML.Usuario usuarioBusquedaAbierta)
+       
         {
             ML.Result result = new ML.Result();
 
@@ -579,18 +580,17 @@ namespace BL
             {
                 using (DL_EF.KCuevasProgramacioNCapasEntities context = new DL_EF.KCuevasProgramacioNCapasEntities())
                 {
-
-                    var query = context.UsuarioGetAll().ToList();
+                    //ML.Usuario usuario = new ML.Usuario();
+                    var query = context.UsuarioGetAll(usuarioBusquedaAbierta.Nombre,usuarioBusquedaAbierta.ApellidoPaterno,usuarioBusquedaAbierta.ApellidoMaterno).ToList();
                     result.Objects = new List<object>();
 
                     if (query != null)
                     {
                         foreach (var objUsuario in query)
-                        {
+                        {                        
                             ML.Usuario usuario = new ML.Usuario();
-
                             usuario.IdUsuario = objUsuario.IdUsuario;
-                            usuario.Nombre = objUsuario.NombreUsuario;
+                            usuario.Nombre = objUsuario.Nombre;
                             usuario.ApellidoPaterno = objUsuario.ApellidoPaterno;
                             usuario.ApellidoMaterno = objUsuario.ApellidoMaterno;
                             usuario.Email = objUsuario.Email;
@@ -604,9 +604,30 @@ namespace BL
                             usuario.Rol = new ML.Rol();
                             usuario.Rol.IdRol = objUsuario.IdRol.Value;
                             usuario.Rol.Nombre = objUsuario.NombreRol;
+                            //Direccion
                             usuario.Direccion = new ML.Direccion();
                             usuario.Direccion.IdDireccion = objUsuario.IdDireccion;
-                                                                                  
+                            usuario.Direccion.Calle = objUsuario.Calle;                      
+                            usuario.Direccion.NumeroExterior = objUsuario.NumeroExterior;
+                            usuario.Direccion.NumeroInterior = objUsuario.NumeroInterior;
+                            //Colonia
+                            usuario.Direccion.Colonia = new ML.Colonia();
+                            usuario.Direccion.Colonia.IdColonia = objUsuario.IdColonia.Value;
+                            usuario.Direccion.Colonia.Nombre = objUsuario.NombreColonia;
+                            usuario.Direccion.Colonia.CodigoPostal = objUsuario.CodigoPostal;
+                            //Municipio
+                            usuario.Direccion.Colonia.Municipio = new ML.Municipio();
+                            usuario.Direccion.Colonia.Municipio.IdMunicipio = objUsuario.IdMunicipio.Value;
+                            usuario.Direccion.Colonia.Municipio.Nombre = objUsuario.NombreMunicipio;
+                            //Estado
+                            usuario.Direccion.Colonia.Municipio.Estado = new ML.Estado();
+                            usuario.Direccion.Colonia.Municipio.Estado.IdEstado = objUsuario.IdEstado.Value;
+                            usuario.Direccion.Colonia.Municipio.Estado.Nombre = objUsuario.NombreEstado;
+                            //Pais
+                            usuario.Direccion.Colonia.Municipio.Estado.Pais = new ML.Pais();
+                            usuario.Direccion.Colonia.Municipio.Estado.Pais.IdPais = objUsuario.IdPais.Value;
+                            usuario.Direccion.Colonia.Municipio.Estado.Pais.Nombre = objUsuario.NombrePais;
+
                             result.Objects.Add(usuario);
                         }
                         result.Correct = true;
@@ -640,7 +661,7 @@ namespace BL
 
                         //usuario.IdUsuario = objUsuario.IdUsuario;
                         usuario.UserName = objUsuario.UserName;
-                        usuario.Nombre = objUsuario.NombreUsuario;
+                        usuario.Nombre = objUsuario.Nombre;
                         usuario.ApellidoPaterno = objUsuario.ApellidoPaterno;
                         usuario.ApellidoMaterno = objUsuario.ApellidoMaterno;
                         usuario.Email = objUsuario.Email;
@@ -654,7 +675,30 @@ namespace BL
                         usuario.Rol.IdRol = objUsuario.IdRol.Value;
                         usuario.UserName = objUsuario.UserName;
                         usuario.Celular = objUsuario.Celular;
-                        
+                        //Direccion
+                        usuario.Direccion = new ML.Direccion();
+                        usuario.Direccion.IdDireccion = objUsuario.IdDireccion;
+                        usuario.Direccion.Calle = objUsuario.Calle;
+                        usuario.Direccion.NumeroExterior = objUsuario.NumeroExterior;
+                        usuario.Direccion.NumeroInterior = objUsuario.NumeroInterior;
+                        //Colonia
+                        usuario.Direccion.Colonia = new ML.Colonia();
+                        usuario.Direccion.Colonia.IdColonia = objUsuario.IdColonia.Value;
+                        usuario.Direccion.Colonia.Nombre = objUsuario.NombreColonia;
+                        usuario.Direccion.Colonia.CodigoPostal = objUsuario.CodigoPostal;
+                        //Municipio
+                        usuario.Direccion.Colonia.Municipio = new ML.Municipio();
+                        usuario.Direccion.Colonia.Municipio.IdMunicipio = objUsuario.IdMunicipio.Value;
+                        usuario.Direccion.Colonia.Municipio.Nombre = objUsuario.NombreMunicipio;
+                        //Estado
+                        usuario.Direccion.Colonia.Municipio.Estado = new ML.Estado();
+                        usuario.Direccion.Colonia.Municipio.Estado.IdEstado = objUsuario.IdEstado.Value;
+                        usuario.Direccion.Colonia.Municipio.Estado.Nombre = objUsuario.NombreEstado;
+                        //Pais
+                        usuario.Direccion.Colonia.Municipio.Estado.Pais = new ML.Pais();
+                        usuario.Direccion.Colonia.Municipio.Estado.Pais.IdPais = objUsuario.IdPais.Value;
+                        usuario.Direccion.Colonia.Municipio.Estado.Pais.Nombre = objUsuario.NombrePais;
+
                         result.Object = usuario;
                         result.Correct = true;
                     

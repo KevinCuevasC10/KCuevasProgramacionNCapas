@@ -26,7 +26,7 @@ namespace BL
                             ML.Estado estado = new ML.Estado();
 
                             estado.IdEstado = objEstado.IdEstado;
-                            estado.Nombre = objEstado.NombreEstado;
+                            estado.Nombre = objEstado.Nombre;
                             estado.Pais = new ML.Pais();
                             estado.Pais.IdPais = objEstado.IdPais.Value;
                            

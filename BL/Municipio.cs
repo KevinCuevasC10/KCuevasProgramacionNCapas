@@ -25,7 +25,7 @@ namespace BL
                             ML.Municipio municipio = new ML.Municipio();
 
                             municipio.IdMunicipio = objMunicipio.IdMunicipio;
-                            municipio.Nombre = objMunicipio.NombreMunicipio;
+                            municipio.Nombre = objMunicipio.Nombre;
                             municipio.Estado = new ML.Estado();
                             municipio.Estado.IdEstado = objMunicipio.IdEstado.Value;
 

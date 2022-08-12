@@ -26,7 +26,7 @@ namespace BL
                             ML.Colonia colonia = new ML.Colonia();
 
                             colonia.IdColonia = objColonia.IdColonia;
-                            colonia.Nombre = objColonia.NombreColonia;
+                            colonia.Nombre = objColonia.Nombre;
                             colonia.CodigoPostal = objColonia.CodigoPostal;
                             colonia.Municipio = new ML.Municipio();
                             colonia.Municipio.IdMunicipio = objColonia.IdMunicipio.Value;

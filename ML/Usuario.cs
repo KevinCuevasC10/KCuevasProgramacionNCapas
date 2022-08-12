@@ -19,7 +19,8 @@ namespace ML
         public string Sexo { get; set; }
         public string Telefono { get; set; }
         public string Curp { get; set; }       
-        public string Celular { get; set; }        
+        public string Celular { get; set; }
+        public bool Status { get; set; }
         public List<Object> Usuarios { get; set; }
         public ML.Rol Rol { get; set; }
         public ML.Direccion Direccion { get; set; }

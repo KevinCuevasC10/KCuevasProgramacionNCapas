@@ -177,7 +177,7 @@
                         }
                     </div>
                 </div>
-                //Colonia 
+                //Colonia
                 <div class=" col-md-12 col-sml-6">
                     <div>
                         @Html.LabelFor(model => model.Direccion.Colonia)
@@ -194,6 +194,38 @@
                     </div>
                 </div>
 
+                <div class="hidden">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Direccion)
+                        @Html.TextBoxFor(model => model.Direccion.IdDireccion, new { @class = "form-control", @id = "txtIdDireccion " })
+                        @Html.ValidationMessageFor(model => model.Direccion.IdDireccion)
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Direccion)
+                        @Html.TextBoxFor(model => model.Direccion.Calle, new { @class = "form-control", @id = "txtCalle" })
+                        @Html.ValidationMessageFor(model => model.Direccion.Calle)
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Direccion)
+                        @Html.TextBoxFor(model => model.Direccion.NumeroInterior, new { @class = "form-control", @id = "txtNumeroInterior" })
+                        @Html.ValidationMessageFor(model => model.Direccion.NumeroInterior)
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Direccion)
+                        @Html.TextBoxFor(model => model.Direccion.NumeroExterior, new { @class = "form-control", @id = "txtNumeroExterior" })
+                        @Html.ValidationMessageFor(model => model.Direccion.NumeroExterior)
+                    </div>
+                </div>
 
                 <div class="col">
                     <div class="col-md-4 col-12 col-sm-6">

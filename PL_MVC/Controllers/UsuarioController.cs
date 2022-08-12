@@ -8,13 +8,17 @@ namespace PL_MVC.Controllers
 {
     public class UsuarioController : Controller
     {
-        [HttpGet]  
-        public ActionResult GetAll()
+        [HttpGet]//Actionverb
+        public ActionResult GetAll() //Mostrar
         {
             ML.Usuario usuario = new ML.Usuario();
-           
-            ML.Result result = BL.Usuario.GetAllEF();        
-            
+
+            usuario.Nombre = (usuario.Nombre == null) ? "" : usuario.Nombre;
+            usuario.ApellidoPaterno = (usuario.ApellidoPaterno == null) ? "" : usuario.ApellidoPaterno;
+            usuario.ApellidoMaterno = (usuario.ApellidoMaterno == null) ? "" : usuario.ApellidoMaterno;
+
+            ML.Result result = BL.Usuario.GetAllEF(usuario);
+
 
             if (result.Correct)
             {
@@ -26,7 +30,32 @@ namespace PL_MVC.Controllers
                 ViewBag.Mensaje = "No se ha podido acceder a la informacion del usuario " + result.Message;
             }
             return View(usuario);
-            
+
+        }
+
+        [HttpPost]//Actionverb
+        public ActionResult GetAll(ML.Usuario usuario) //Mostrar
+        {
+            //ML.Usuario usuario = new ML.Usuario();
+
+            usuario.Nombre = (usuario.Nombre == null) ? "" : usuario.Nombre;
+            usuario.ApellidoPaterno = (usuario.ApellidoPaterno == null) ? "" : usuario.ApellidoPaterno;
+            usuario.ApellidoMaterno = (usuario.ApellidoMaterno == null) ? "" : usuario.ApellidoMaterno;
+
+            ML.Result result = BL.Usuario.GetAllEF(usuario);
+
+
+            if (result.Correct)
+            {
+                usuario.Usuarios = result.Objects;
+
+            }
+            else
+            {
+                ViewBag.Mensaje = "No se ha podido acceder a la informacion del usuario " + result.Message;
+            }
+            return View(usuario);
+
         }
 
 
@@ -66,9 +95,19 @@ namespace PL_MVC.Controllers
 
                         if (result.Correct)// Validar si entra
                         {
-                            usuario.Rol = new ML.Rol();
                             usuario = (ML.Usuario)result.Object; // unboxing
+                            //usuario.Rol = new ML.Rol();
+                            
                             usuario.Rol.Roles = result.Objects;
+                            usuario.Rol.Roles = resultRol.Objects;
+                            ML.Result resultPai = BL.Pais.PaisGetAll();
+                            //usuario.Direccion = new ML.Direccion();
+                            //usuario.Direccion.Colonia = new ML.Colonia();
+                            //usuario.Direccion.Colonia.Municipio = new ML.Municipio();
+                            //usuario.Direccion.Colonia.Municipio.Estado = new ML.Estado();
+                            //usuario.Direccion.Colonia.Municipio.Estado.Pais = new ML.Pais();
+                            usuario.Direccion.Colonia.Municipio.Estado.Pais.Paises = resultPai.Objects;
+
                             return View(usuario);
                         }
                         else

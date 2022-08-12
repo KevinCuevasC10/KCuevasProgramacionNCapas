@@ -17,9 +17,10 @@ namespace PL
                         
             //PL.Usuario.Delete();
             
-            PL.Usuario.GetAll();
+            //PL.Usuario.GetAll();
 
             //PL.Usuario.GetById();
+
             
         }
     }
